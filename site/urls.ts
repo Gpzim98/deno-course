@@ -1,4 +1,5 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
+import { HomeController } from './apps/homepage/controllers.ts';
 
 const books = new Map<string, any>();
 books.set("1", {
@@ -7,12 +8,9 @@ books.set("1", {
   author: "Conan Doyle, Author",
 });
 
-
 export var router = new Router();
 router
-    .get("/", (context) => {
-        context.response.body = "Hello world!";
-    })
+    .get("/", (context) => new HomeController().get(context))
     .get("/book", (context) => {
         context.response.body = Array.from(books.values());
     })
