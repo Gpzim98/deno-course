@@ -1,23 +1,15 @@
-import { serve } from "https://deno.land/std/http/server.ts";
 import { FlagsParser } from "./flags_parser.ts";
+import { Application } from "https://deno.land/x/oak/mod.ts";
+import { router } from "../site/urls.ts";
 
 const { args } = Deno;
 
 var flagsParser = new FlagsParser(args);
 
-const server = serve({ port: flagsParser.getPort() });
 console.log("http://localhost:" + flagsParser.getPort());
 
-function getCustomer()
-{
-    return "Hi, I am Deno!"
-}
+const app = new Application();
+app.use(router.routes());
+console.log(flagsParser.getPort());
 
-for await (const req of server) {
-    console.log(req.url);
-
-    if(req.url == '/customer')
-        req.respond({ body: getCustomer()});
-    else
-        req.respond({ body: "404" });
-}
+await app.listen({ port: flagsParser.getPort() });
