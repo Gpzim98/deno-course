@@ -14,6 +14,13 @@ export class DBSetup
                 return new Database(dbsettings.engine, {
                     filepath: dbPath,
                 });
+            case 'postgres':
+                return new Database('postgres', {
+                        host: dbsettings.host,
+                        username: dbsettings.username,
+                        password: dbsettings.password,
+                        database: dbsettings.database,
+                });
             default:
                 throw new Error('Not possible to instanciate a DB connection');
         }
@@ -21,11 +28,20 @@ export class DBSetup
 
     static async setupDb()
     {
-        const db = this.GetDB();
         var globalSettings = GlobalSettings.GetInstance();
-        db.link(globalSettings.handler.config.models);
-        await db.sync({ drop: true});
-        await db.close();
+        const db = this.GetDB();
+        
+        for(let model of globalSettings.handler.config.models)
+        {
+            try {
+                db.link([model])
+                await db.sync({drop: false});
+                await db.close();
+                console.log('Model ' + model.name + ' synced successfully');
+            } catch (error) {                
+                console.log('Model ' + model.name + ' already synced');
+            }
+        }
         console.log('DB synced successfully');
     }
 }
