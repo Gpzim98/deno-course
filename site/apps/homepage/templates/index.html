@@ -4,8 +4,8 @@
     <h1>Welcome to {{ var }}!!!</h1>
 
     <ul>
-        {% for person in people %}
-            <li> {{ person }}</li>
+        {% for flight in flights %}
+            <li> {{ flight.id }} - {{ flight.departure }} - {{ flight.destination }}</li>
         {% endfor %}
     </ul>
 
