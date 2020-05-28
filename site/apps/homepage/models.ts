@@ -1,6 +1,7 @@
-import { DATA_TYPES, Model } from 'https://deno.land/x/denodb/mod.ts';
+import { DATA_TYPES } from 'https://deno.land/x/denodb/mod.ts';
+import { BaseModel } from '../../../webframework/base_model.ts';
 
-export class Flight extends Model {
+export class Flight extends BaseModel {
     static table = 'flights';
     static timestamps = true;
   
@@ -19,7 +20,7 @@ export class Flight extends Model {
     };
 }
 
-export class NewModel extends Model {
+export class NewModel extends BaseModel {
     static table = 'newtable';
     static timestamps = true;
   

@@ -8,10 +8,7 @@ export class HomeController extends ControllerBase
     async get(context : RouterContext)
     {
         try {
-            var db = DBSetup.GetDB();
-            db.link([Flight]);
-            var resp = await Flight.all();
-            db.close();
+            var resp = await Flight.getAll(Flight);
             
             var data = {
                 var: "Deno",
