@@ -5,6 +5,7 @@ export class FlagsParser
     private port : number;
     importPath : string;
     handler : any;
+    syncdb?: string;
 
     constructor(params : string[])
     {
@@ -12,6 +13,7 @@ export class FlagsParser
         this.port = parameters.port; 
         this.handler = parameters.handler;
         this.importPath = Deno.cwd();
+        this.syncdb = parameters.sync;
     }
 
     getPort() : number
@@ -26,5 +28,10 @@ export class FlagsParser
     {
         var re = /\\/gi; 
         return "file:///" + this.importPath.replace(re, "/");
+    }
+
+    getSyncDb()
+    {
+        return this.syncdb?.toUpperCase() === 'YES';
     }
 }
