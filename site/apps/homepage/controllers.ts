@@ -43,6 +43,18 @@ export class HomeController extends ControllerBase
         }
     }
 
+    async deleteFlight(context: RouterContext)
+    {        
+        try {
+            var id = context.params.id;
+            if(id)
+                await Flight.deleteModel(Flight, id);
+            context.response.body = "Flight deleted successfully"
+        } catch (error) {
+            context.response.body = "There was an error when trying to delete a flight"
+        }
+    }
+
     public async newFlightGet(context : RouterContext)
     {        
         context.response.body = this.renderTemplate("homepage", "newflight.html", null);

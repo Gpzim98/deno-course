@@ -5,6 +5,23 @@
 
     {% for flight in flights %}
         {{ flight.id }} - {{ flight.destination }}
+        <a onclick="deleteFlight({{ flight.id}})">Delete</a>
     {% endfor %}
+
+    <script>
+        function deleteFlight(id)
+        {
+            $.ajax({
+                url : '/flight/' + id,
+                method : 'delete',
+                data : {
+                    id : id
+                }
+            }).then((res)=>{
+                alert(res);
+                window.location.replace("/");
+            });
+        }
+    </script>
 
 {% endblock content %}
