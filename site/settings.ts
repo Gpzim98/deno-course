@@ -16,5 +16,6 @@ export var config = {
     models: [
         Flight,
         NewModel
-    ]
+    ],
+    static_folder: 'static'
 }
