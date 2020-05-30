@@ -6,6 +6,7 @@ router
     .get("/", (context) => new HomeController().get(context))
     .get("/flight/:id", (context) => new HomeController().getById(context))
     .delete("/flight/:id", (context) => new HomeController().deleteFlight(context))
+    .put("/flight/:id", (context) => new HomeController().put(context))
     .get("/about", (context) => new AboutController().get(context))
     .post("/about", (context) => new AboutController().post(context))
     

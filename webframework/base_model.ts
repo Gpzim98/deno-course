@@ -20,6 +20,15 @@ export class BaseModel extends Model
         db.close();
         return resp;
     }
+
+    static async updateModel(model : any, id : string, data : any)
+    {
+        var db = DBSetup.GetDB();
+        db.link([model]);
+        var resp = await model.where('id', id).update(data);
+        db.close();
+        return resp;
+    }
   
     static async save(model : any, data : any)
     {

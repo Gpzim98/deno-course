@@ -55,6 +55,28 @@ export class HomeController extends ControllerBase
         }
     }
 
+    async put(context: RouterContext)
+    {        
+        try {
+            var body = await context.request.body();      
+            var form = new URLSearchParams(body.value);  
+
+            var data = {
+                departure: form.get('departure'),
+                destination: form.get('destination'),
+                flightDuration: form.get('flightDuration'),
+            }
+            var id = context.params.id;
+            
+            if(id)
+                await Flight.updateModel(Flight, id, data);
+                context.response.body = "Flight updated successfully";
+        } catch (error) {
+            console.log(error);
+            context.response.body = "There was an error when updating a flight"
+        }
+    }
+
     public async newFlightGet(context : RouterContext)
     {        
         context.response.body = this.renderTemplate("homepage", "newflight.html", null);
@@ -64,7 +86,6 @@ export class HomeController extends ControllerBase
     {          
         var body = await context.request.body();      
         var form = new URLSearchParams(body.value);  
-             
         await Flight.save(Flight, 
             { 
                 departure: form.get('departure'),
