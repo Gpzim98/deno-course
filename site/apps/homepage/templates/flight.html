@@ -1,21 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Flight view</h1>
 
     {% for flight in flights %}
+
+<section class="wrapper style1 align-center">
+    <h1>Flight view</h1>
+
         {{ flight.id }} - {{ flight.destination }} {{ flight.flightDuration }}
         <a onclick="deleteFlight({{ flight.id}})">Delete</a>
 
-        <form>
-            <label>Departure</label><br>
-            <input type="text" name="departure" id="departure" value={{ flight.departure }}><br>
-            <label>Destination</label><br>
-            <input type="text" name="destination" id="destination" value={{ flight.destination }}><br>
-            <label>Flight duration</label><br>
-            <input type="text" name="flightDuration" id="flightDuration" value={{ flight.flightDuration }}><br>
-            <a onclick="saveData({{ flight.id }})">Save</a>
-        </form>
+        <div class="inner medium">
+        <h2>Edit the flight</h2>
+
+            <form method="POST">
+                <div class="fields">
+                    <div class="field half">
+                        <label for="departure"> Departure </label>
+                        <input type="text" name="departure" id="departure" value={{ flight.departure }}>
+                    </div>
+
+                    <div class="field half">    
+                        <label for="destination"> Destination </label>
+                        <input type="text" name="destination" id="destination" value={{ flight.destination}}>
+                    </div>
+
+                    <div class="field">
+                        <label> Duration </label>
+                        <input type="text" name="flightDuration" id="flightDuration" value={{ flight.flightDuration}}>
+                    </div>
+                </div>
+                <a onclick="saveData({{ flight.id }})">Save</a>
+            </form>
+        </div>
+    </section>
 
     {% endfor %}
 

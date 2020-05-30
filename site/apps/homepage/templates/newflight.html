@@ -1,20 +1,30 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Saving a new flight</h1>
+    <section class="wrapper style1 align-center">
+        <div class="inner medium">
+        <h1>Saving a new flight</h1>
 
-    <form method="POST">
-        <label> Departure </label><br>
-        <input type="text" name="departure" id="departure"><br>
+            <form method="POST">
+                <div class="fields">
+                    <div class="field half">
+                        <label for="departure"> Departure </label>
+                        <input type="text" name="departure" id="departure">
+                    </div>
 
-        <label> Destination </label><br>
-        <input type="text" name="destination" id="destination"><br>
+                    <div class="field half">    
+                        <label for="destination"> Destination </label>
+                        <input type="text" name="destination" id="destination">
+                    </div>
 
-        <label> Duration </label><br>
-        <input type="text" name="flightDuration" id="flightDuration"><br>
-
-        <br>
-        <button type="submit">Save</button>
-    </form>
+                    <div class="field">
+                        <label> Duration </label>
+                        <input type="text" name="flightDuration" id="flightDuration">
+                    </div>
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </section>
 
 {% endblock content %}
