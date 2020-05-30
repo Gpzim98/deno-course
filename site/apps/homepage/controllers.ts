@@ -42,6 +42,30 @@ export class HomeController extends ControllerBase
             context.response.body = "There a problem processing the requst, plese try again";
         }
     }
+
+    public async newFlightGet(context : RouterContext)
+    {        
+        context.response.body = this.renderTemplate("homepage", "newflight.html", null);
+    }
+
+    public async post(context : RouterContext)
+    {          
+        var body = await context.request.body();      
+        var form = new URLSearchParams(body.value);  
+             
+        await Flight.save(Flight, 
+            { 
+                departure: form.get('departure'),
+                destination: form.get('destination'),
+                flightDuration: form.get('flightDuration'),
+            }, 
+        );
+
+        var data = {
+            flight_name: form.get('departure')
+        }
+        context.response.body = this.renderTemplate("homepage", "confirmation.html", data);
+    }
 }
 
 export class AboutController extends ControllerBase

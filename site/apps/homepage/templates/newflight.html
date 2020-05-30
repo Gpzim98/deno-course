@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Saving a new flight</h1>
+
+    <form method="POST">
+        <label> Departure </label><br>
+        <input type="text" name="departure" id="departure"><br>
+
+        <label> Destination </label><br>
+        <input type="text" name="destination" id="destination"><br>
+
+        <label> Duration </label><br>
+        <input type="text" name="flightDuration" id="flightDuration"><br>
+
+        <br>
+        <button type="submit">Save</button>
+    </form>
+
+{% endblock content %}
