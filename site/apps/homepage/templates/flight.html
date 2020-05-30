@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Flight view</h1>
+
+    {% for flight in flights %}
+
+        {{ flight.id }} - {{ flight.destination }}
+    {% endfor %}
+{% endblock content %}

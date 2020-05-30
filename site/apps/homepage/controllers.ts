@@ -19,6 +19,27 @@ export class HomeController extends ControllerBase
                 "homepage", "index.html", data);
         } catch (error) {
             console.log(error);
+            context.response.body = "There a problem processing the requst, plese try again";
+        }
+    }
+
+    async getById(context: RouterContext)
+    {
+        var id = context.params.id;
+
+        try {
+            if (id)
+                var resp = await Flight.getModelById(Flight, id);
+            else
+                context.response.body = "ID is required";
+            
+            console.log(resp);
+            
+            context.response.body = this.renderTemplate(
+                "homepage", "flight.html", { flights: resp});
+        } catch (error) {
+            console.log(error);
+            context.response.body = "There a problem processing the requst, plese try again";
         }
     }
 }

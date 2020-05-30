@@ -21,13 +21,13 @@ export class BaseModel extends Model
         return resp;
     }
   
-  static async save(model : any, data : any)
-  {
-      var db = DBSetup.GetDB();
-      db.link([model]);
-      await model.create(data);
-      db.close();
-  }
+    static async save(model : any, data : any)
+    {
+        var db = DBSetup.GetDB();
+        db.link([model]);
+        await model.create(data);
+        db.close();
+    }
 
   static async deleteModel(model : any, id : string)
   {
