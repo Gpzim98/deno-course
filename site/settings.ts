@@ -17,5 +17,6 @@ export var config = {
         Flight,
         NewModel
     ],
-    static_folder: 'static'
+    static_folder: 'static',
+    static_url: 'http://localhost:8001/'
 }
