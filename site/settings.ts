@@ -18,5 +18,5 @@ export var config = {
         NewModel
     ],
     static_folder: 'static',
-    static_url: 'http://localhost:8001/'
+    static_url: 'http://51.104.226.112:8001/'
 }
