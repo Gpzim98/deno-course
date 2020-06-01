@@ -12,7 +12,7 @@ export class ControllerBase
         
         data['STATIC_URL'] = globalSettings.handler.config.static_url;
 
-        var fullPath = globalSettings.fullPath + `\\apps\\${appname}\\templates\\`;
+        var fullPath = globalSettings.fullPath + `/apps/${appname}/templates/`;
         denjucks.configure(fullPath);
         return denjucks.render(templatename, data);
     }
